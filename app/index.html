@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./node_modules/web3/dist/web3.min.js"></script>
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="abi.js"></script>
+</head>
+<body>
+
+  <input type="button" id="settext1" value="投票"><br>
+  <input type="button" id="settext2" value="添加投票者"><br>
+  <input type="txt" id="address2"><br>
+  <input type="button" id="gettext1" value="获取结果">
+  <input type="button" id="gettext2" value="重置">
+  <input type="button" id="gettext3" value="获取投票者列表">
+
+  <div id="div1"></div>
+  <div id="div2"></div>
+
+
+<script>
+
+  $(function(){
+
+    if(window.ethereum) {
+      web3 = new Web3(window.ethereum);
+      window.ethereum.enable();
+    } else {
+      web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+    }
+    var helloAddress = "0xCE7850844c9c61eaE2312Db8DE148fb1dE193807";
+    
+    var contract = new web3.eth.Contract(abi, helloAddress);
+    
+ 
+    $('#settext2').click(function() {
+      var ad = $('#address2').val();
+
+      web3.eth.getAccounts().then(function (userAccount) {
+        contract.methods.add_candidate(ad).send({from:userAccount[0]});
+      });
+
+    })
+
+    $('#settext1').click(function() {
+
+      web3.eth.getAccounts().then(function (userAccount) {
+        contract.methods.voteForCandidate().send({from:userAccount[0]});
+      });
+
+    })
+
+    $('#gettext1').click(function() {
+      contract.methods.r_command().call().then(function (final) {
+        $('#div1').text(final);
+      });
+    })
+
+    $('#gettext2').click(function() {
+      web3.eth.getAccounts().then(function (userAccount) {
+        contract.methods.reset_command().send({from:userAccount[0]});
+      });
+    })
+
+    $('#gettext3').click(function() {
+      contract.methods.r_candidateList().call().then(function (final) {
+        $('#div2').text(final);
+      });
+    })
+  })
+
+
+</script>
+
+</body>
+</html>

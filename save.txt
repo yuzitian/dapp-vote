@@ -1,0 +1,17 @@
+2_vote.js
+=========
+
+   Deploying 'vote'
+   ----------------
+   > transaction hash:    0xff1d5fb8d14eb0237b7ca271cef140b0825009a53bc9ab1ed680a97af3782ca0
+   > Blocks: 1            Seconds: 11
+   > contract address:    0xCE7850844c9c61eaE2312Db8DE148fb1dE193807
+   > block number:        11083917
+   > block timestamp:     1632297512
+   > account:             0x1741Ec49De7579a8eFD1A5CFfB0C22c9e4772C97
+   > balance:             0.326556682878279362
+   > gas used:            693196 (0xa93cc)
+   > gas price:           30 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02079588 ETH
+
