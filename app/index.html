@@ -8,12 +8,14 @@
 </head>
 <body>
 
-  <input type="button" id="settext1" value="投票"><br>
-  <input type="button" id="settext2" value="添加投票者"><br>
   <input type="txt" id="address2"><br>
-  <input type="button" id="gettext1" value="获取结果">
-  <input type="button" id="gettext2" value="重置">
-  <input type="button" id="gettext3" value="获取投票者列表">
+  <input type="button" id="settext2" value="添加命令决策者"><br>
+  <input type="txt" id="address3"><br>
+  <input type="button" id="settext3" value="删除命令决策者"><br>
+  <input type="button" id="settext1" value="同意执行命令"><br>
+  <input type="button" id="gettext3" value="获取命令决策者列表">
+  <input type="button" id="gettext2" value="重置命令">
+  <input type="button" id="gettext1" value="获取结果"><br>
 
   <div id="div1"></div>
   <div id="div2"></div>
@@ -29,9 +31,11 @@
     } else {
       web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
     }
-    var helloAddress = "0xCE7850844c9c61eaE2312Db8DE148fb1dE193807";
+    var helloAddress = "0x9f88AEe9D42aeafCb8BBF9e9797aDF2dfAAc39De";
     
     var contract = new web3.eth.Contract(abi, helloAddress);
+
+    console.log(contract);
     
  
     $('#settext2').click(function() {
@@ -39,6 +43,15 @@
 
       web3.eth.getAccounts().then(function (userAccount) {
         contract.methods.add_candidate(ad).send({from:userAccount[0]});
+      });
+
+    })
+
+    $('#settext3').click(function() {
+      var add = $('#address3').val();
+
+      web3.eth.getAccounts().then(function (userAccount) {
+        contract.methods.remove_candidate(add).send({from:userAccount[0]});
       });
 
     })
@@ -52,8 +65,8 @@
     })
 
     $('#gettext1').click(function() {
-      contract.methods.r_command().call().then(function (final) {
-        $('#div1').text(final);
+      contract.methods.r_command().call().then(function (finall) {
+        $('#div1').text(finall);
       });
     })
 
@@ -64,8 +77,12 @@
     })
 
     $('#gettext3').click(function() {
-      contract.methods.r_candidateList().call().then(function (final) {
-        $('#div2').text(final);
+      web3.eth.getAccounts().then(function (userAccount) {
+        contract.methods.y_r_candidateList().send({from:userAccount[0]}).then(function(){
+          contract.methods.r_candidateList().call().then(function (final) {
+          $('#div2').text(final);
+          });
+        })
       });
     })
   })

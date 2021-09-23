@@ -7,11 +7,13 @@ contract vote {
     address destination_address;
     uint256 final_result;
     bool command = false;
+    bool flag = false;
     
     event add_voter(address candidate);
     event voting(address candidate);
-    event get_final(address creater);
+    event get_final(address candidate);
     event reset(address creater);
+    event delete_voter(address candidate);
     
     function add_candidate(address candidate) public returns (uint) {
         require(vaildcreater());
@@ -24,6 +26,21 @@ contract vote {
         votesReceived[candidate] = false;
         emit add_voter(candidate);
         return 1;
+    }
+    
+    function remove_candidate(address candidate) public {
+        require(vaildcreater());
+        for(uint i=0; i < candidateList.length; i++){
+            if(candidateList[i] == candidate){
+                address swap;
+                swap = candidateList[i];
+                candidateList[i] = candidateList[candidateList.length - 1];
+                candidateList[candidateList.length - 1] = swap;
+                candidateList.pop();
+                break;
+            }
+        }
+        emit delete_voter(candidate);
     }
 
     function voteForCandidate() public {
@@ -81,8 +98,16 @@ contract vote {
         }
     }
     
-    function r_candidateList() view public returns (address[] memory){
-        return candidateList;
+    function y_r_candidateList() public {
+        require(validCandidate(msg.sender));
+        flag = true;
+    }
+    
+    function r_candidateList() public returns (address[] memory){
+        if (flag == true) {
+            flag = false;
+            return candidateList;
+        }
     }
 
     

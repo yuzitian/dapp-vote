@@ -9,7 +9,7 @@ var abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [],
 		"name": "r_candidateList",
 		"outputs": [
@@ -19,7 +19,7 @@ var abi = [
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -58,6 +58,15 @@ var abi = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "y_r_candidateList",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -164,6 +173,20 @@ var abi = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "candidate",
+				"type": "address"
+			}
+		],
+		"name": "remove_candidate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -192,7 +215,7 @@ var abi = [
 		"inputs": [
 			{
 				"indexed": false,
-				"name": "creater",
+				"name": "candidate",
 				"type": "address"
 			}
 		],
@@ -209,6 +232,18 @@ var abi = [
 			}
 		],
 		"name": "reset",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "candidate",
+				"type": "address"
+			}
+		],
+		"name": "delete_voter",
 		"type": "event"
 	}
 ]

@@ -3,15 +3,15 @@
 
    Deploying 'vote'
    ----------------
-   > transaction hash:    0xff1d5fb8d14eb0237b7ca271cef140b0825009a53bc9ab1ed680a97af3782ca0
-   > Blocks: 1            Seconds: 11
-   > contract address:    0xCE7850844c9c61eaE2312Db8DE148fb1dE193807
-   > block number:        11083917
-   > block timestamp:     1632297512
+   > transaction hash:    0xfb506844435366e16ce0a34ff41ae7e3e2bab4f562f9527a682faf66d062cae1
+   > Blocks: 2            Seconds: 21
+   > contract address:    0x9f88AEe9D42aeafCb8BBF9e9797aDF2dfAAc39De
+   > block number:        11090201
+   > block timestamp:     1632377983
    > account:             0x1741Ec49De7579a8eFD1A5CFfB0C22c9e4772C97
-   > balance:             0.326556682878279362
-   > gas used:            693196 (0xa93cc)
+   > balance:             1.870664105844280238
+   > gas used:            877664 (0xd6460)
    > gas price:           30 gwei
    > value sent:          0 ETH
-   > total cost:          0.02079588 ETH
+   > total cost:          0.02632992 ETH
 
